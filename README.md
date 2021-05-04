@@ -1,26 +1,16 @@
-# Storefront Reference Architecture (SFRA)
+# Projeto Individual SalesForce
 
-This is a repository for the Storefront Reference Architecture reference application.
+Este Projeto consiste em um cadastro de perfil profissional, para feirantes que queirem revender os produtos da loja do site. 
 
-Storefront Reference Architecture has a base cartridge (`app_storefront_base`) provided by Commerce Cloud that is never directly customized or edited. Instead, customization cartridges are layered on top of the base cartridge. This change is intended to allow for easier adoption of new features and bug fixes.
-Storefront Reference Architecture supplies an [plugin_applepay](https://github.com/SalesforceCommerceCloud/plugin-applepay) plugin cartridge to demonstrate how to layer customizations for the reference application.
+## Como começar
 
-Your feedback on the ease-of-use and limitations of this new architecture is invaluable during the developer preview. Particularly, feedback on any issues you encounter or workarounds you develop for efficiently customizing the base cartridge without editing it directly.
+1. Clone este repositório.
 
+2. No terminal do VsCode execute `npm install` para instalar todas as dependências locais (versão do node 8.x ou versão LTS atual recomendada)
 
-# The latest version
+3. Execute `npm run compile: js` a partir da linha de comando que compilaria todos os arquivos JS do lado do cliente. Execute `npm run compile: scss` e` npm run compile: fonts` que faria o mesmo para css e fontes.
 
-The latest version of SFRA is 5.3.0
-
-# Getting Started
-
-1. Clone this repository.
-
-2. Run `npm install` to install all of the local dependencies (node version 8.x or current LTS release recommended)
-
-3. Run `npm run compile:js` from the command line that would compile all client-side JS files. Run `npm run compile:scss` and `npm run compile:fonts` that would do the same for css and fonts.
-
-4. Create `dw.json` file in the root of the project:
+4. Crie o arquivo `dw.json` na raiz do projeto:
 ```json
 {
     "hostname": "your-sandbox-hostname.demandware.net",
@@ -30,72 +20,83 @@ The latest version of SFRA is 5.3.0
 }
 ```
 
-5. Run `npm run uploadCartridge`. It will upload `app_storefront_base`, `modules` and `bm_app_storefront_base` cartridges to the sandbox you specified in `dw.json` file.
+5. Execute `npm run uploadCartridge`. Ele irá carregar os cartuchos `app_storefront_base`,` modules` e `bm_app_storefront_base` para a sandbox que você especificou no arquivo` dw.json`.
 
-6. Use https://github.com/SalesforceCommerceCloud/storefrontdata to zip and import site data on your sandbox.
+6. Use https://github.com/SalesforceCommerceCloud/storefrontdata para compactar e importar dados do site em sua sandbox.
 
-7. Add the `app_storefront_base` cartridge to your cartridge path in _Administration >  Sites >  Manage Sites > RefArch - Settings_ (Note: This should already be populated by the sample data in Step 6).
+7. Adicione o cartucho `app_storefront_base` ao caminho do cartucho em _Administração> Sites> Gerenciar sites> RefArch - Configurações_.
 
-8. You should now be ready to navigate to and use your site.
+8. Crie o seu cartucho de customização, pois não é recomendado fazer alterações direto no cartucho base.
+    8.1. Ir na extensão do _prophet> cartridges> more Actions> Create cartridge_;
+    8.2. Primeiro deve ser colocado o nome `cartridges` e depois o nome do seu cartucho.
 
-# NPM scripts
-Use the provided NPM scripts to compile and upload changes to your Sandbox.
+8. Agora você deve estar pronto para navegar e usar seu site.
+
+## NPM scripts
+Use os scripts NPM fornecidos para compilar e fazer upload das alterações para o seu Sandbox.
 
 ## Compiling your application
 
-* `npm run compile:scss` - Compiles all .scss files into CSS.
-* `npm run compile:js` - Compiles all .js files and aggregates them.
-* `npm run compile:fonts` - Copies all needed font files. Usually, this only has to be run once.
+* `npm run compile:scss` - Compila todos os arquivos .scss em CSS.
+* `npm run compile:js` - Compila todos os arquivos .js e os agrega.
+* `npm run compile:fonts` - Copia todos os arquivos de fontes necessários. Normalmente, isso só precisa ser executado uma vez.
 
- If you are having an issue compiling scss files, try running 'npm rebuild node-sass' from within your local repo.
+ Se você estiver tendo problemas para compilar arquivos scss, tente executar 'npm rebuild node-sass' de dentro de seu repositório local.
 
-## Linting your code
+## Linting seu código
 
-`npm run lint` - Execute linting for all JavaScript and SCSS files in the project. You should run this command before committing your code.
+`npm run lint` - Executa linting para todos os arquivos JavaScript e SCSS do projeto. Você deve executar este comando antes de confirmar seu código.
 
-## Watching for changes and uploading
+## Observando as alterações e enviando
 
-`npm run watch` - Watches everything and recompiles (if necessary) and uploads to the sandbox. Requires a valid `dw.json` file at the root that is configured for the sandbox to upload.
+`npm run watch` - Observa tudo e recompila (se necessário) e carrega para a sandbox. Requer um arquivo `dw.json` válido na raiz que está configurado para o upload do sandbox.
 
-## Uploading
+## Enviando
 
-`npm run uploadCartridge` - Will upload `app_storefront_base`, `modules` and `bm_app_storefront_base` to the server. Requires a valid `dw.json` file at the root that is configured for the sandbox to upload.
+`npm run uploadCartridge` - Carregará` app_storefront_base`, `modules` e` bm_app_storefront_base` para o servidor. Requer um arquivo `dw.json` válido na raiz que está configurado para o upload do sandbox.
 
-`npm run upload <filepath>` - Will upload a given file to the server. Requires a valid `dw.json` file.
+`npm run upload <filepath>` - Carregará um determinado arquivo para o servidor. Requer um arquivo `dw.json` válido.
 
-# Testing
-## Running unit tests
+# Testando
+## Executando testes de unidade
 
-You can run `npm test` to execute all unit tests in the project. Run `npm run cover` to get coverage information. Coverage will be available in `coverage` folder under root directory.
+Você pode executar `npm test` para executar todos os testes de unidade no projeto. Execute `npm run cover` para obter informações de cobertura. A cobertura estará disponível na pasta `cobertura` no diretório raiz.
 
-* UNIT test code coverage:
-1. Open a terminal and navigate to the root directory of the mfsg repository.
-2. Enter the command: `npm run cover`.
-3. Examine the report that is generated. For example: `Writing coverage reports at [/Users/yourusername/SCC/sfra/coverage]`
-3. Navigate to this directory on your local machine, open up the index.html file. This file contains a detailed report.
+* Cobertura do código de teste UNIT:
+1. Abra um terminal e navegue até o diretório raiz do repositório mfsg.
+2. Digite o comando: `npm run cover`.
+3. Examine o relatório gerado. Por exemplo: `Escrevendo relatórios de cobertura em [/ Usuários / seunomedeusuario / SCC / sfra / cobertura]`
+3. Navegue até este diretório em sua máquina local, abra o arquivo index.html. Este arquivo contém um relatório detalhado.
 
-## Running integration tests
-Integration tests are located in the `storefront-reference-architecture/test/integration` directory.
+## Executando testes de integração
+Os testes de integração estão localizados no diretório `storefront-reference-architecture / test / integration`.
 
-To run integration tests you can use the following command:
+Para executar testes de integração, você pode usar o seguinte comando:
 
 ```
 npm run test:integration
 ```
 
-**Note:** Please note that short form of this command will try to locate URL of your sandbox by reading `dw.json` file in the root directory of your project. If you don't have `dw.json` file, integration tests will fail.
-sample `dw.json` file (this file needs to be in the root of your project)
+**Nota:** Observe que a forma abreviada deste comando tentará localizar a URL de sua sandbox lendo o arquivo `dw.json` no diretório raiz de seu projeto. Se você não tiver o arquivo `dw.json`, os testes de integração falharão.
+exemplo de arquivo `dw.json` (este arquivo precisa estar na raiz do seu projeto)
 {
     "hostname": "devxx-sitegenesis-dw.demandware.net"
 }
 
-You can also supply URL of the sandbox on the command line:
+Você também pode fornecer o URL da sandbox na linha de comando:
 
 ```
 npm run test:integration -- --baseUrl devxx-sitegenesis-dw.demandware.net
 ```
 
-# [Contributing to SFRA](./CONTRIBUTING.md)
+## [Contribuindo com a SFRA](./CONTRIBUTING.md)
 
-#Page Designer Components for Storefront Reference Architecture
-See: [Page Designer Components](./page-designer-components.md)
+#Page Designer Componentes para arquitetura de referência da Storefront
+Consulte: [Componentes do Page Designer](./page-designer-components.md)
+
+
+### Dúvidas
+Qualquer dúvida, entre em contato comigo pelo email: kerodsg@gmail.com<br>
+Ficarei feliz em ajudar.
+
+**Minhas redes sociais**: [Linkedin](https://www.linkedin.com/in/kerollainy-gomes/) | [Instagram](https://www.instagram.com/kelorainy/)
