@@ -2,6 +2,12 @@
 
 Este Projeto consiste em um cadastro de perfil profissional, para feirantes que queirem revender os produtos da loja do site. 
 
+# Observações para avaliação
+
+1. Estou usando a conta do sandbox do grupo 1 para realizar esta atividade;
+2. O projeto está rodando no site RefArch;
+3. O endereço esta no Footer em *Atendimento*, chamado de *Seja um Revendedor*;
+
 ## Como começar
 
 1. Clone este repositório.
