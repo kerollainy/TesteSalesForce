@@ -95,7 +95,7 @@ npm run test:integration -- --baseUrl devxx-sitegenesis-dw.demandware.net
 Consulte: [Componentes do Page Designer](./page-designer-components.md)
 
 
-### Dúvidas
+### [Dúvidas]
 Qualquer dúvida, entre em contato comigo pelo email: kerodsg@gmail.com<br>
 Ficarei feliz em ajudar.
 
